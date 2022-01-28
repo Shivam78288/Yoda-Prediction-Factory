@@ -1,0 +1,3 @@
+Eth-Token Market: https://mumbai.polygonscan.com/address/0x6D43a3c3aA351f7Df10699ED613a029c4E228036
+
+PredMarketFactory: https://mumbai.polygonscan.com/address/0x9ecBE2c8340fb5Efac45b475529aB2b81ae1f520
