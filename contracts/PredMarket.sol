@@ -4,11 +4,12 @@ pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./interfaces/AggregatorV3Interface.sol";
 
 contract PredMarket is Pausable {
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
 
     struct Round {
         uint256 epoch;
@@ -39,6 +40,8 @@ contract PredMarket is Pausable {
     mapping(uint256 => Round) public rounds;
     mapping(uint256 => mapping(address => BetInfo)) public ledger;
     mapping(address => uint256[]) public userRounds;
+    // 0 for Bull, 1 for Bear, 2 for if price remains the same
+    mapping(uint256 => uint8) public winner;
     
     uint256 public currentEpoch;
     uint256 public lockInterval;
@@ -322,10 +325,7 @@ contract PredMarket is Pausable {
             "_amount < minBetAmount"
         );
 
-        require(
-            IERC20(tokenStaked).transferFrom(msg.sender, address(this), _amount),
-            "Failure in token transfer"
-        );
+        IERC20(tokenStaked).safeTransferFrom(msg.sender, address(this), _amount);
 
         uint256 amount = _amount;
 
@@ -360,10 +360,7 @@ contract PredMarket is Pausable {
             "_amount < minBetAmount"
         );
 
-        require(
-            IERC20(tokenStaked).transferFrom(msg.sender, address(this), _amount),
-            "Failure in token transfer"
-        );
+        IERC20(tokenStaked).safeTransferFrom(msg.sender, address(this), _amount);
 
         uint256 amount = _amount;
 
@@ -593,18 +590,21 @@ contract PredMarket is Pausable {
         uint256 treasuryAmt;
         // Bull wins
         if (round.closePrice > round.openPrice) {
+            winner[epoch] = uint8(Position.Bull);
             rewardBaseCalAmount = round.bullAmount;
             rewardAmount = round.totalAmount.mul(rewardRate).div(TOTAL_RATE);
             treasuryAmt = round.totalAmount.mul(treasuryRate).div(TOTAL_RATE);
         }
         // Bear wins
         else if (round.closePrice < round.openPrice) {
+            winner[epoch] = uint8(Position.Bear);
             rewardBaseCalAmount = round.bearAmount;
             rewardAmount = round.totalAmount.mul(rewardRate).div(TOTAL_RATE);
             treasuryAmt = round.totalAmount.mul(treasuryRate).div(TOTAL_RATE);
         }
         // If price stays the same, refund the amount
         else {
+            winner[epoch] = uint8(2);
             rewardBaseCalAmount = round.totalAmount;
             rewardAmount = round.totalAmount;
             treasuryAmt = 0;
@@ -646,8 +646,7 @@ contract PredMarket is Pausable {
     }
 
     function _safeTransferToken(address to, uint256 value) internal {
-        bool success = IERC20(tokenStaked).transfer(to, value);
-        require(success, "Failure in token transfer");    
+        IERC20(tokenStaked).safeTransfer(to, value);
     }
 
     function _isContract(address addr) internal view returns (bool) {
@@ -665,6 +664,32 @@ contract PredMarket is Pausable {
             round.lockTime != 0 &&
             block.timestamp > round.startTime &&
             block.timestamp < round.lockTime;
+    }
+
+    //If someone accidently sends tokens other than tokenStaked or someone sends native currency
+    function withdrawAllTokens(address token) external onlyOwner{
+        uint256 bal = IERC20(token).balanceOf(address(this));
+        withdrawToken(token, bal);
+    }
+
+    
+    function withdrawToken(address token, uint256 amount) public onlyOwner{
+        require(token != tokenStaked, "Cannot withdraw the token staked");
+        uint256 bal = IERC20(token).balanceOf(address(this));
+        require(bal >= amount, "balanace of token in contract too low");
+        IERC20(token).safeTransfer(owner, amount);
+    }
+
+    function withdrawAllNative() external onlyOwner{
+        uint256 bal = address(this).balance;
+        withdrawNative(bal);
+    } 
+
+    function withdrawNative(uint256 amount) public onlyOwner{
+        uint256 bal = address(this).balance;
+        require(bal >= amount, "balanace of native token in contract too low");
+        (bool sent, ) = owner.call{value: amount}("");
+        require(sent, "Failure in transfer");
     }
 }
 

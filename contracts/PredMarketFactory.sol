@@ -2,9 +2,11 @@
 
 pragma solidity ^0.8.2;
 import './PredMarket.sol';
+import '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
 
 
 contract PredMarketFactory{
+    using SafeERC20 for IERC20;
 
     address public owner;
     address public admin;
@@ -134,5 +136,29 @@ contract PredMarketFactory{
         operator = _operator;
         emit SetOperator(oldOperator, _operator);
     }
+
+    //If someone accidently sends any token or native currency to this contract
+    function withdrawAllTokens(address token) external onlyOwner{
+        uint256 bal = IERC20(token).balanceOf(address(this));
+        withdrawToken(token, bal);
+    }
+
     
+    function withdrawToken(address token, uint256 amount) public onlyOwner{
+        uint256 bal = IERC20(token).balanceOf(address(this));
+        require(bal >= amount, "balanace of token in contract too low");
+        IERC20(token).safeTransfer(owner, amount);
+    }
+
+    function withdrawAllNative() external onlyOwner{
+        uint256 bal = address(this).balance;
+        withdrawNative(bal);
+    } 
+
+    function withdrawNative(uint256 amount) public onlyOwner{
+        uint256 bal = address(this).balance;
+        require(bal >= amount, "balanace of native token in contract too low");
+        (bool sent, ) = owner.call{value: amount}("");
+        require(sent, "Failure in transfer");
+    }
 }
