@@ -55,9 +55,9 @@ contract PredMarket is Pausable {
     uint256 public oracleRoundId;
 
 
-    uint256 public constant TOTAL_RATE = 100; // 100%
-    uint256 public rewardRate = 90; // 90%
-    uint256 public treasuryRate = 10; // 10%
+    uint256 public constant RATE_PRECISION = 1000000; // 100%
+    uint256 public rewardRate = 900000; // 90%
+    uint256 public treasuryRate = 100000; // 10%
     uint256 public minBetAmount;
     uint256 public oracleUpdateAllowance; // seconds
 
@@ -236,11 +236,11 @@ contract PredMarket is Pausable {
      */
     function setRewardRate(uint256 _rewardRate) external onlyAdmin {
         require(
-            _rewardRate <= TOTAL_RATE,
+            _rewardRate <= RATE_PRECISION,
             "rewardRate cannot be > 100%"
         );
         rewardRate = _rewardRate;
-        treasuryRate = TOTAL_RATE.sub(_rewardRate);
+        treasuryRate = RATE_PRECISION.sub(_rewardRate);
 
         emit RatesUpdated(currentEpoch, rewardRate, treasuryRate);
     }
@@ -311,7 +311,7 @@ contract PredMarket is Pausable {
     /**
      * @dev Bet bear position
      */
-    function betBear(uint256 _amount) external whenNotPaused notContract {
+    function betBear(uint256 _amount) external whenNotPaused notContract returns(bool){
 
         require(bettable(currentEpoch), "Round not bettable");
         
@@ -339,14 +339,15 @@ contract PredMarket is Pausable {
         betInfo.position = Position.Bear;
         betInfo.amount = amount;
         userRounds[msg.sender].push(currentEpoch);
-
+        
         emit Bet(Position.Bear, msg.sender, currentEpoch, amount);
+        return true;
     }
 
     /**
      * @dev Bet bull position
      */
-    function betBull(uint256 _amount) external whenNotPaused notContract {
+    function betBull(uint256 _amount) external whenNotPaused notContract returns (bool){
 
         require(bettable(currentEpoch), "Round not bettable");
         
@@ -376,6 +377,7 @@ contract PredMarket is Pausable {
         userRounds[msg.sender].push(currentEpoch);
 
         emit Bet(Position.Bull, msg.sender, currentEpoch, amount);
+        return true;
     }
 
     function claim(uint256 epoch) external notContract {
@@ -576,7 +578,7 @@ contract PredMarket is Pausable {
      */
     function _calculateRewards(uint256 epoch) internal {
         require(
-            rewardRate.add(treasuryRate) == TOTAL_RATE,
+            rewardRate.add(treasuryRate) == RATE_PRECISION,
             "rewardRate+treasuryRate != 100"
         );
         require(
@@ -592,15 +594,15 @@ contract PredMarket is Pausable {
         if (round.closePrice > round.openPrice) {
             winner[epoch] = uint8(Position.Bull);
             rewardBaseCalAmount = round.bullAmount;
-            rewardAmount = round.totalAmount.mul(rewardRate).div(TOTAL_RATE);
-            treasuryAmt = round.totalAmount.mul(treasuryRate).div(TOTAL_RATE);
+            rewardAmount = round.totalAmount.mul(rewardRate);
+            treasuryAmt = round.totalAmount.mul(treasuryRate);
         }
         // Bear wins
         else if (round.closePrice < round.openPrice) {
             winner[epoch] = uint8(Position.Bear);
             rewardBaseCalAmount = round.bearAmount;
-            rewardAmount = round.totalAmount.mul(rewardRate).div(TOTAL_RATE);
-            treasuryAmt = round.totalAmount.mul(treasuryRate).div(TOTAL_RATE);
+            rewardAmount = round.totalAmount.mul(rewardRate);
+            treasuryAmt = round.totalAmount.mul(treasuryRate);
         }
         // If price stays the same, refund the amount
         else {
@@ -610,10 +612,10 @@ contract PredMarket is Pausable {
             treasuryAmt = 0;
         }
         round.rewardBaseCalAmount = rewardBaseCalAmount;
-        round.rewardAmount = rewardAmount;
+        round.rewardAmount = rewardAmount.div(RATE_PRECISION);
 
         // Add to treasury
-        treasuryAmount = treasuryAmount.add(treasuryAmt);
+        treasuryAmount = treasuryAmount.add(treasuryAmt.div(RATE_PRECISION));
 
         emit RewardsCalculated(
             epoch,
