@@ -13,7 +13,7 @@ contract PredMarketFactory{
     address public operator;
 
     //tokensPred + tokenStaked => market contract
-    mapping(address => mapping(address => address)) public markets;
+    mapping(address => mapping(address => address[])) public markets;
 
     event MarketCreated(
         address indexed tokenPred, 
@@ -55,11 +55,6 @@ contract PredMarketFactory{
     external
     onlyAdminOrOperator
     {
-        require(
-            markets[_tokenPred][_tokenStaked] == address(0), 
-            "Already deployed"
-            );
-        
         PredMarket pred = new PredMarket(
             _name,
             _tokenPred,
@@ -73,7 +68,7 @@ contract PredMarketFactory{
             _oracleUpdateAllowance
         );
 
-        markets[_tokenPred][_tokenStaked] = address(pred);
+        markets[_tokenPred][_tokenStaked].push(address(pred));
 
         emit MarketCreated(_tokenPred, _tokenStaked, address(pred));
 

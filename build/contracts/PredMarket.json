@@ -18930,7 +18930,7 @@
         690
       ],
       "AggregatorV3Interface": [
-        3584
+        3572
       ],
       "Context": [
         712
@@ -19009,7 +19009,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3072,
-        "sourceUnit": 3585,
+        "sourceUnit": 3573,
         "src": "245:48:7",
         "symbolAliases": [],
         "unitAlias": ""
@@ -20026,7 +20026,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+              "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
               "typeString": "contract AggregatorV3Interface"
             },
             "typeName": {
@@ -20036,13 +20036,13 @@
                 "id": 1146,
                 "name": "AggregatorV3Interface",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 3584,
+                "referencedDeclaration": 3572,
                 "src": "1496:21:7"
               },
-              "referencedDeclaration": 3584,
+              "referencedDeclaration": 3572,
               "src": "1496:21:7",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                 "typeString": "contract AggregatorV3Interface"
               }
             },
@@ -21518,7 +21518,7 @@
                       "referencedDeclaration": 1148,
                       "src": "3516:6:7",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
@@ -21550,10 +21550,10 @@
                         "name": "AggregatorV3Interface",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3584,
+                        "referencedDeclaration": 3572,
                         "src": "3525:21:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3584_$",
+                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3572_$",
                           "typeString": "type(contract AggregatorV3Interface)"
                         }
                       },
@@ -21568,13 +21568,13 @@
                       "src": "3525:30:7",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
                     "src": "3516:39:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                       "typeString": "contract AggregatorV3Interface"
                     }
                   },
@@ -24762,7 +24762,7 @@
                       "referencedDeclaration": 1148,
                       "src": "6233:6:7",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
@@ -24794,10 +24794,10 @@
                         "name": "AggregatorV3Interface",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3584,
+                        "referencedDeclaration": 3572,
                         "src": "6242:21:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3584_$",
+                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3572_$",
                           "typeString": "type(contract AggregatorV3Interface)"
                         }
                       },
@@ -24812,13 +24812,13 @@
                       "src": "6242:30:7",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
                     "src": "6233:39:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                       "typeString": "contract AggregatorV3Interface"
                     }
                   },
@@ -41350,7 +41350,7 @@
                         "referencedDeclaration": 1148,
                         "src": "19590:6:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                           "typeString": "contract AggregatorV3Interface"
                         }
                       },
@@ -41361,7 +41361,7 @@
                       "lValueRequested": false,
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3583,
+                      "referencedDeclaration": 3571,
                       "src": "19590:32:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -44368,7 +44368,7 @@
         690
       ],
       "AggregatorV3Interface": [
-        3584
+        3572
       ],
       "Context": [
         712
@@ -44447,7 +44447,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3072,
-        "sourceUnit": 3585,
+        "sourceUnit": 3573,
         "src": "245:48:7",
         "symbolAliases": [],
         "unitAlias": ""
@@ -45464,7 +45464,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+              "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
               "typeString": "contract AggregatorV3Interface"
             },
             "typeName": {
@@ -45474,13 +45474,13 @@
                 "id": 1146,
                 "name": "AggregatorV3Interface",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 3584,
+                "referencedDeclaration": 3572,
                 "src": "1496:21:7"
               },
-              "referencedDeclaration": 3584,
+              "referencedDeclaration": 3572,
               "src": "1496:21:7",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                 "typeString": "contract AggregatorV3Interface"
               }
             },
@@ -46956,7 +46956,7 @@
                       "referencedDeclaration": 1148,
                       "src": "3516:6:7",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
@@ -46988,10 +46988,10 @@
                         "name": "AggregatorV3Interface",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3584,
+                        "referencedDeclaration": 3572,
                         "src": "3525:21:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3584_$",
+                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3572_$",
                           "typeString": "type(contract AggregatorV3Interface)"
                         }
                       },
@@ -47006,13 +47006,13 @@
                       "src": "3525:30:7",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
                     "src": "3516:39:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                       "typeString": "contract AggregatorV3Interface"
                     }
                   },
@@ -50200,7 +50200,7 @@
                       "referencedDeclaration": 1148,
                       "src": "6233:6:7",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
@@ -50232,10 +50232,10 @@
                         "name": "AggregatorV3Interface",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3584,
+                        "referencedDeclaration": 3572,
                         "src": "6242:21:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3584_$",
+                          "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$3572_$",
                           "typeString": "type(contract AggregatorV3Interface)"
                         }
                       },
@@ -50250,13 +50250,13 @@
                       "src": "6242:30:7",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                        "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                         "typeString": "contract AggregatorV3Interface"
                       }
                     },
                     "src": "6233:39:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                      "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                       "typeString": "contract AggregatorV3Interface"
                     }
                   },
@@ -66788,7 +66788,7 @@
                         "referencedDeclaration": 1148,
                         "src": "19590:6:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$3584",
+                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$3572",
                           "typeString": "contract AggregatorV3Interface"
                         }
                       },
@@ -66799,7 +66799,7 @@
                       "lValueRequested": false,
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3583,
+                      "referencedDeclaration": 3571,
                       "src": "19590:32:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -69805,7 +69805,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-01T14:11:45.732Z",
+  "updatedAt": "2022-02-02T07:42:27.726Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
